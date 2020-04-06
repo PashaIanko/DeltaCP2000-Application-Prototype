@@ -1,5 +1,5 @@
 from pymodbus.exceptions import ParameterException
-
+import PopUpNotifier
 import FTClient
 
 class Connector:
@@ -18,6 +18,7 @@ class Connector:
         self.IfClientConnected = False
 
         self.DeltaCPClient = 0
+        self.PopUpNotifier = PopUpNotifier.PopUpNotifier()
 
     def Connect(self, connectionparameters):
         self.ConnectionParameters = connectionparameters
@@ -40,6 +41,7 @@ class Connector:
             )
             self.IfClientConnected = self.DeltaCPClient.Connect()
             print('If connected:', self.IfClientConnected)
+            self.PopUpNotifier.ConnectionSuccessNotify(self.IfClientConnected)
         except ParameterException:
             print("Invalid Parameters!")
 

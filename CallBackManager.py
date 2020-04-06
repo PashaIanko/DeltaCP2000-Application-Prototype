@@ -2,7 +2,7 @@ from GraphicsShell import *
 import ConnectionParameters
 import Connector
 
-'''test'''
+
 class CallBackManager(GraphicsShell):
 
     def __init__(self, window):
@@ -34,25 +34,37 @@ class CallBackManager(GraphicsShell):
 
 
     def SetProtocol(self):
-        self.ConnectionParams.SetProtocol(self.ProtocolcomboBox.currentText())# = self.ProtocolcomboBox.currentText()
+        arg = self.ProtocolcomboBox.currentText()
+        if(len(arg)):
+            self.ConnectionParams.SetProtocol(self.ProtocolcomboBox.currentText())# = self.ProtocolcomboBox.currentText()
 
 
     def SetByteSize(self):
-        self.ConnectionParams.SetByteSize(int(self.ByteSizecomboBox.currentText()))
+        arg = self.ByteSizecomboBox.currentText()
+        if(len(arg)):
+            self.ConnectionParams.SetByteSize(int(arg))
 
     def SetParity(self):
-        self.ConnectionParams.SetParity(self.ParitycomboBox.currentText())
+        arg = self.ParitycomboBox.currentText()
+        if(len(arg)):
+            self.ConnectionParams.SetParity(arg)
 
     def SetStopBits(self):
-        self.ConnectionParams.SetStopBits(int(self.StopBitscomboBox.currentText()))
+        arg = self.StopBitscomboBox.currentText()
+        if(len(arg)):
+            self.ConnectionParams.SetStopBits(int(self.StopBitscomboBox.currentText()))
 
 
     def SetBaudRate(self):
-        self.ConnectionParams.SetBaudRate(int(self.BaudRatecomboBox.currentText()))
+        arg = self.BaudRatecomboBox.currentText()
+        if(len(arg)):
+            self.ConnectionParams.SetBaudRate(int(self.BaudRatecomboBox.currentText()))
 
         
     def SetCOMPort(self):
-        self.ConnectionParams.SetCOMPort(int(self.COMPortcomboBox.currentText()))
+        arg = self.COMPortcomboBox.currentText()
+        if(len(arg)):
+            self.ConnectionParams.SetCOMPort(int(self.COMPortcomboBox.currentText()))
 
 
     def Connect(self):
