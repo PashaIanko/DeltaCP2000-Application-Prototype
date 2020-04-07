@@ -20,7 +20,6 @@ class FTClient(ModbusClient):
                 BaudRate
         ):
 
-        print("Client Ctor")
         self.client = ModbusClient\
             (
                 method = Protocol,
@@ -31,9 +30,13 @@ class FTClient(ModbusClient):
                 parity = Parity,
                 baudrate = BaudRate
             )
+        self.Tesing_mode = True
 
     def Connect(self):
-        return self.client.connect()
+        if(self.Tesing_mode == False):
+            return self.client.connect()
+        else:
+            return True
 
 
 # Source Code from video on Youtube:

@@ -11,16 +11,18 @@ class PopUpNotifier(object):
             cls.obj = object.__new__(cls, *dt, **mp)  # вызовем __new__ родительского класса
             return cls.obj
 
-    def ConnectionSuccessNotify(self, if_connected):
+    def ConnectionProgressNotify(self, if_connected):
         msg = QMessageBox()
-        msg.setWindowTitle('Connection Progress')
         succeeded = 'Connection Successful!'
         failed = 'Connection with FT failed'
+        msg.setWindowTitle('Connection Progress')
 
         if(if_connected):
             msg.setText(succeeded)
             msg.setIcon(QMessageBox.Information)
         else:
             msg.setText(failed)
-            msg.setIcon(QMessageBox.Critical)
+            msg.setIcon(QMessageBox.Warning)
         msg.exec_()
+
+

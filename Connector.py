@@ -1,17 +1,19 @@
 from pymodbus.exceptions import ParameterException
 import PopUpNotifier
+import CrashNotifier
 import FTClient
+import sys
 
 class Connector:
     def __init__(self):
 
         self.ConnectionParameters = {}
 
-        self.Protocol = ""
+        self.Protocol = " "
         self.COMPort = 0
         self.StopBits = 0
         self.ByteSize = 0
-        self.Parity = ""
+        self.Parity = " "
         self.BaudRate = 0
         self.Timeout = 2
 
@@ -19,6 +21,7 @@ class Connector:
 
         self.DeltaCPClient = 0
         self.PopUpNotifier = PopUpNotifier.PopUpNotifier()
+        self.CrashNotifier = CrashNotifier.CrashNotifier()
 
     def Connect(self, connectionparameters):
         self.ConnectionParameters = connectionparameters
@@ -40,10 +43,18 @@ class Connector:
                 self.BaudRate
             )
             self.IfClientConnected = self.DeltaCPClient.Connect()
-            print('If connected:', self.IfClientConnected)
-            self.PopUpNotifier.ConnectionSuccessNotify(self.IfClientConnected)
+            self.PopUpNotifier.ConnectionProgressNotify(self.IfClientConnected)
         except ParameterException:
-            print("Invalid Parameters!")
+            self.CrashNotifier.ExceptionNotify("Invalid Parameters")
+        except:
+            error_name = sys.exc_info()
+            if (error_name is ValueError):
+                self.CrashNotifier.ValueErrorNotify("Value error in Connector.Connect()")
+            if(error_name is ZeroDivisionError):
+                self.CrashNotifier.ValueErrorNotify("Zero division in Connector.Connect(), please set Bauв Rate")
+            else:
+                self.CrashNotifier.UnexpectedErrorNotify(' in Connector.Connect()')
+
 
 
     def ProxyFiltParameters(self):
