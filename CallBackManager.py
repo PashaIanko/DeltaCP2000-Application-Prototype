@@ -2,12 +2,20 @@ from GraphicsShell import *
 import ConnectionParameters
 import Connector
 
+class Test:
+    def __init__(self):
+        self.N = 0
+
+    def Callback(self, connectionP):
+        print(connectionP)
+        print(connectionP.GetConnectionParameters())
 
 class CallBackManager(GraphicsShell):
 
     def __init__(self, window):
         self.setupUi(window)
 
+        self.TestCallBack = Test()
 
         # Connector to try connecting to FT
         self.Connector = Connector.Connector()
@@ -15,12 +23,37 @@ class CallBackManager(GraphicsShell):
         # Connection Parameters Entity
         self.ConnectionParams = ConnectionParameters.ConnectionParameters()
 
-        self.ConnectCallBacks()
+        # Connecting signals
+        self.ConnectComboBoxes()
         self.ConnectPushButtons()
+        self.SyncSlidersandTexts()
+
+    def SyncSlidersandTexts(self):
+        self.FrequencySetSlider.valueChanged.connect(self.FrequencySetlineEditValueChange)
+        self.FrequencySetlineEdit.textEdited.connect(self.FrequencySetSliderValueChange)
 
 
+    def FrequencySetlineEditValueChange(self):
+        try:
+            #lineEditText = self.FrequencySetlineEdit.text()
+            self.FrequencySetlineEdit.setText(str(self.FrequencySetSlider.value()/10))
+        except:
+            print('caught!')
 
-    def ConnectCallBacks(self):
+
+    def FrequencySetSliderValueChange(self):
+        lineEditText = self.FrequencySetlineEdit.text()
+        if(len(lineEditText) == 0):
+            lineEditText = '0'
+        try:
+            value = float(lineEditText) * 10
+            self.FrequencySetSlider.setValue(value)
+        except:
+            pass
+            # This exception implies some problems with the manual input
+            # print('caught in slider')
+
+    def ConnectComboBoxes(self):
         self.BaudRatecomboBox.currentIndexChanged.connect   (self.SetBaudRate)
         self.COMPortcomboBox.currentIndexChanged.connect    (self.SetCOMPort)
         self.ProtocolcomboBox.currentIndexChanged.connect   (self.SetProtocol)
@@ -29,8 +62,13 @@ class CallBackManager(GraphicsShell):
         self.StopBitscomboBox.currentIndexChanged.connect   (self.SetStopBits)
 
 
+
+
     def ConnectPushButtons(self):
         self.ConnectpushButton.clicked.connect(self.Connect)
+        self.TestpushButton.clicked.connect(lambda: self.TestCallBack.Callback(self.ConnectionParams))
+        self.SetFreqpushButton.clicked.connect(lambda: self.Connector.SetOutputFrequency(self.FrequencySetlineEdit.text()))
+        self.RunpushButton.clicked.connect(lambda: self.Connector.RunFT())
 
 
     def SetProtocol(self):
@@ -71,6 +109,8 @@ class CallBackManager(GraphicsShell):
         self.Connector.Connect(self.ConnectionParams.GetConnectionParameters())
 
 
+
+
 if __name__ == "__main__":
     import sys
 
@@ -81,3 +121,6 @@ if __name__ == "__main__":
 
     MainWindow.show()
     sys.exit(app.exec_())
+
+
+

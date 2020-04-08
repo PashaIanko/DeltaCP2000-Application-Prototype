@@ -20,6 +20,7 @@ class FTClient(ModbusClient):
                 BaudRate
         ):
 
+        self.if_connected = False
         self.client = ModbusClient\
             (
                 method = Protocol,
@@ -34,10 +35,17 @@ class FTClient(ModbusClient):
 
     def Connect(self):
         if(self.Tesing_mode == False):
-            return self.client.connect()
+            self.if_connected = self.client.connect()
+            return self.if_connected
         else:
             return True
 
+    def WriteOutputFreqRegister(self, FreqStr):
+        print('writing the f=' + str(FreqStr) + ' in the output register')
+        pass
+
+    def SendRunCommand(self):
+        pass
 
 # Source Code from video on Youtube:
 #client = ModbusClient(

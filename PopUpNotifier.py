@@ -25,4 +25,14 @@ class PopUpNotifier(object):
             msg.setIcon(QMessageBox.Warning)
         msg.exec_()
 
+    def ClientNotConnectedNotify(self):
+        msg = QMessageBox()
+        msg.setWindowTitle('Client Disconnect')
+
+        message = 'Client is not connected, cannot complete the operation'
+        msg.setText(message)
+        msg.setIcon(QMessageBox.Critical)
+        msg.exec_()
+
+
 

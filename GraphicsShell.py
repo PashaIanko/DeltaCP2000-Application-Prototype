@@ -10,8 +10,6 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-
-
 class GraphicsShell(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
@@ -19,11 +17,11 @@ class GraphicsShell(object):
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.aaa = QtWidgets.QTabWidget(self.centralwidget)
-        self.aaa.setGeometry(QtCore.QRect(20, 40, 661, 411))
+        self.aaa.setGeometry(QtCore.QRect(20, 60, 731, 411))
         self.aaa.setObjectName("aaa")
-        self.ConnectionParameters = QtWidgets.QWidget()
-        self.ConnectionParameters.setObjectName("ConnectionParameters")
-        self.layoutWidget = QtWidgets.QWidget(self.ConnectionParameters)
+        self.ConnectionParametersTab = QtWidgets.QWidget()
+        self.ConnectionParametersTab.setObjectName("ConnectionParametersTab")
+        self.layoutWidget = QtWidgets.QWidget(self.ConnectionParametersTab)
         self.layoutWidget.setGeometry(QtCore.QRect(10, 250, 195, 30))
         self.layoutWidget.setObjectName("layoutWidget")
         self.horizontalLayout = QtWidgets.QHBoxLayout(self.layoutWidget)
@@ -35,7 +33,7 @@ class GraphicsShell(object):
         self.ConnectpushButton = QtWidgets.QPushButton(self.layoutWidget)
         self.ConnectpushButton.setObjectName("ConnectpushButton")
         self.horizontalLayout.addWidget(self.ConnectpushButton)
-        self.layoutWidget1 = QtWidgets.QWidget(self.ConnectionParameters)
+        self.layoutWidget1 = QtWidgets.QWidget(self.ConnectionParametersTab)
         self.layoutWidget1.setGeometry(QtCore.QRect(10, 20, 235, 227))
         self.layoutWidget1.setObjectName("layoutWidget1")
         self.gridLayout = QtWidgets.QGridLayout(self.layoutWidget1)
@@ -108,25 +106,87 @@ class GraphicsShell(object):
         self.ProtocolcomboBox.addItem("")
         self.ProtocolcomboBox.addItem("")
         self.gridLayout.addWidget(self.ProtocolcomboBox, 0, 3, 1, 2)
-        self.aaa.addTab(self.ConnectionParameters, "")
-        self.tab_2 = QtWidgets.QWidget()
-        self.tab_2.setObjectName("tab_2")
-        self.pushButton = QtWidgets.QPushButton(self.tab_2)
-        self.pushButton.setGeometry(QtCore.QRect(80, 100, 93, 28))
-        self.pushButton.setObjectName("pushButton")
-        self.aaa.addTab(self.tab_2, "")
+        self.aaa.addTab(self.ConnectionParametersTab, "")
+        self.OutputFrequencySettingTab = QtWidgets.QWidget()
+        self.OutputFrequencySettingTab.setObjectName("OutputFrequencySettingTab")
+        self.FrequencySetSlider = QtWidgets.QSlider(self.OutputFrequencySettingTab)
+        self.FrequencySetSlider.setGeometry(QtCore.QRect(420, 50, 231, 22))
+        self.FrequencySetSlider.setMaximum(100)
+        self.FrequencySetSlider.setSingleStep(0.01)
+        self.FrequencySetSlider.setOrientation(QtCore.Qt.Horizontal)
+        self.FrequencySetSlider.setTickPosition(QtWidgets.QSlider.TicksBelow)
+        self.FrequencySetSlider.setObjectName("FrequencySetSlider")
+        self.HztextEdit = QtWidgets.QTextEdit(self.OutputFrequencySettingTab)
+        self.HztextEdit.setEnabled(False)
+        self.HztextEdit.setGeometry(QtCore.QRect(280, 50, 51, 21))
+        self.HztextEdit.setAutoFillBackground(False)
+        self.HztextEdit.setFrameShape(QtWidgets.QFrame.NoFrame)
+        self.HztextEdit.setObjectName("HztextEdit")
+        self.TestpushButton = QtWidgets.QPushButton(self.OutputFrequencySettingTab)
+        self.TestpushButton.setGeometry(QtCore.QRect(10, 170, 93, 28))
+        self.TestpushButton.setObjectName("TestpushButton")
+        self.FreqMintextEdit = QtWidgets.QTextEdit(self.OutputFrequencySettingTab)
+        self.FreqMintextEdit.setEnabled(False)
+        self.FreqMintextEdit.setGeometry(QtCore.QRect(390, 40, 41, 41))
+        self.FreqMintextEdit.setFrameShape(QtWidgets.QFrame.NoFrame)
+        self.FreqMintextEdit.setObjectName("FreqMintextEdit")
+        self.FreqMaxtextEdit = QtWidgets.QTextEdit(self.OutputFrequencySettingTab)
+        self.FreqMaxtextEdit.setEnabled(False)
+        self.FreqMaxtextEdit.setGeometry(QtCore.QRect(660, 40, 41, 41))
+        self.FreqMaxtextEdit.setFrameShape(QtWidgets.QFrame.NoFrame)
+        self.FreqMaxtextEdit.setObjectName("FreqMaxtextEdit")
+        self.SetFreqpushButton = QtWidgets.QPushButton(self.OutputFrequencySettingTab)
+        self.SetFreqpushButton.setGeometry(QtCore.QRect(210, 120, 93, 28))
+        self.SetFreqpushButton.setObjectName("SetFreqpushButton")
+        self.RunpushButton = QtWidgets.QPushButton(self.OutputFrequencySettingTab)
+        self.RunpushButton.setGeometry(QtCore.QRect(10, 120, 93, 28))
+        self.RunpushButton.setObjectName("RunpushButton")
+        self.StoppushButton = QtWidgets.QPushButton(self.OutputFrequencySettingTab)
+        self.StoppushButton.setGeometry(QtCore.QRect(110, 120, 93, 28))
+        self.StoppushButton.setObjectName("StoppushButton")
+        self.layoutWidget2 = QtWidgets.QWidget(self.OutputFrequencySettingTab)
+        self.layoutWidget2.setGeometry(QtCore.QRect(10, 40, 267, 41))
+        self.layoutWidget2.setObjectName("layoutWidget2")
+        self.horizontalLayout_3 = QtWidgets.QHBoxLayout(self.layoutWidget2)
+        self.horizontalLayout_3.setContentsMargins(0, 0, 0, 0)
+        self.horizontalLayout_3.setObjectName("horizontalLayout_3")
+        self.label_3 = QtWidgets.QLabel(self.layoutWidget2)
+        self.label_3.setObjectName("label_3")
+        self.horizontalLayout_3.addWidget(self.label_3)
+        self.FrequencySetlineEdit = QtWidgets.QLineEdit(self.layoutWidget2)
+        self.FrequencySetlineEdit.setObjectName("FrequencySetlineEdit")
+        self.horizontalLayout_3.addWidget(self.FrequencySetlineEdit)
+        self.layoutWidget.raise_()
+        self.HztextEdit.raise_()
+        self.TestpushButton.raise_()
+        self.FreqMintextEdit.raise_()
+        self.FrequencySetSlider.raise_()
+        self.FreqMaxtextEdit.raise_()
+        self.SetFreqpushButton.raise_()
+        self.RunpushButton.raise_()
+        self.StoppushButton.raise_()
+        self.aaa.addTab(self.OutputFrequencySettingTab, "")
+        self.FrequencySignalSetting = QtWidgets.QWidget()
+        self.FrequencySignalSetting.setObjectName("FrequencySignalSetting")
+        self.aaa.addTab(self.FrequencySignalSetting, "")
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 800, 26))
         self.menubar.setObjectName("menubar")
         self.menuConnection_Parameters = QtWidgets.QMenu(self.menubar)
         self.menuConnection_Parameters.setObjectName("menuConnection_Parameters")
+        self.menuOutput_Frequency_Settings = QtWidgets.QMenu(self.menubar)
+        self.menuOutput_Frequency_Settings.setObjectName("menuOutput_Frequency_Settings")
+        self.menuNew = QtWidgets.QMenu(self.menubar)
+        self.menuNew.setObjectName("menuNew")
         MainWindow.setMenuBar(self.menubar)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
         self.menuConnection_Parameters.addSeparator()
         self.menubar.addAction(self.menuConnection_Parameters.menuAction())
+        self.menubar.addAction(self.menuOutput_Frequency_Settings.menuAction())
+        self.menubar.addAction(self.menuNew.menuAction())
 
         self.retranslateUi(MainWindow)
         self.aaa.setCurrentIndex(0)
@@ -162,10 +222,39 @@ class GraphicsShell(object):
         self.ParitycomboBox.setItemText(3, _translate("MainWindow", "E"))
         self.ProtocolcomboBox.setItemText(1, _translate("MainWindow", "RTU"))
         self.ProtocolcomboBox.setItemText(2, _translate("MainWindow", "ASCII"))
-        self.aaa.setTabText(self.aaa.indexOf(self.ConnectionParameters), _translate("MainWindow", "Connection Parameters"))
-        self.pushButton.setText(_translate("MainWindow", "NewButton"))
-        self.aaa.setTabText(self.aaa.indexOf(self.tab_2), _translate("MainWindow", "Tab 2"))
+        self.aaa.setTabText(self.aaa.indexOf(self.ConnectionParametersTab), _translate("MainWindow", "Connection Parameters"))
+        self.HztextEdit.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:7.8pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'MS Shell Dlg 2\';\">Hz</span></p></body></html>"))
+        self.TestpushButton.setText(_translate("MainWindow", "TestButton"))
+        self.FreqMintextEdit.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:7.8pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'MS Shell Dlg 2\';\">0</span></p></body></html>"))
+        self.FreqMaxtextEdit.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:7.8pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'MS Shell Dlg 2\';\">100</span></p></body></html>"))
+        self.SetFreqpushButton.setText(_translate("MainWindow", "Set frequency"))
+        self.RunpushButton.setText(_translate("MainWindow", "Run"))
+        self.StoppushButton.setText(_translate("MainWindow", "Stop"))
+        self.label_3.setText(_translate("MainWindow", "Output frequency:"))
+        self.aaa.setTabText(self.aaa.indexOf(self.OutputFrequencySettingTab), _translate("MainWindow", "Output Frequency Setting"))
+        self.aaa.setTabText(self.aaa.indexOf(self.FrequencySignalSetting), _translate("MainWindow", "Frequency Signal Setting"))
         self.menuConnection_Parameters.setTitle(_translate("MainWindow", "Connection Parameters"))
+        self.menuOutput_Frequency_Settings.setTitle(_translate("MainWindow", "Output Frequency Settings"))
+        self.menuNew.setTitle(_translate("MainWindow", "New"))
+
+
+
+
+
+
+
 
 
 

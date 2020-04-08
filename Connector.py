@@ -19,7 +19,7 @@ class Connector:
 
         self.IfClientConnected = False
 
-        self.DeltaCPClient = 0
+        #self.DeltaCPClient = 0
         self.PopUpNotifier = PopUpNotifier.PopUpNotifier()
         self.CrashNotifier = CrashNotifier.CrashNotifier()
 
@@ -44,6 +44,10 @@ class Connector:
             )
             self.IfClientConnected = self.DeltaCPClient.Connect()
             self.PopUpNotifier.ConnectionProgressNotify(self.IfClientConnected)
+            #self.DeltaCPClient.Connect()
+            #self.PopUpNotifier.ConnectionProgressNotify(self.DeltaCPClient.if_connected)
+
+
         except ParameterException:
             self.CrashNotifier.ExceptionNotify("Invalid Parameters")
         except:
@@ -77,6 +81,29 @@ class Connector:
             self.Parity = Value
         if(ParamName_ == 'baudrate'):
             self.BaudRate = Value
+
+    def CheckClientConnection(self):
+        return self.IfClientConnected
+
+    def SetOutputFrequency(self, freq_str):
+        # print('in Connector')
+        # print(freq_str)
+        if(len(freq_str) == 0):
+            freq_str = '0'
+        if(self.CheckClientConnection()):
+            self.DeltaCPClient.WriteOutputFreqRegister(freq_str)
+        else:
+            self.PopUpNotifier.ClientNotConnectedNotify()
+
+    def RunFT(self):
+        if(self.CheckClientConnection()):
+            self.DeltaCPClient.SendRunCommand()
+        else:
+            self.CrashNotifier.CrashNotify("Sending Run Command: Client is not connected!")
+
+
+
+
 
 
 

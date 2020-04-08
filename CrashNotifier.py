@@ -31,3 +31,10 @@ class CrashNotifier(object):
         msg.setText('Unexpected error in ' + str(window_message))
         msg.setIcon(QMessageBox.Critical)
         msg.exec_()
+
+    def CrashNotify(self, message):
+        msg = QMessageBox()
+        msg.setWindowTitle("Error")
+        msg.setText(message)
+        msg.setIcon(QMessageBox.Critical)
+        msg.exec_()
