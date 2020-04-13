@@ -123,12 +123,12 @@ if __name__ == "__main__":
     ui = CallBackManager(MainWindow)
 
     MainWindow.show()
-    try:
-        SessionLogger.Info('Application Startedd')
-    except:
-        print ("Unexpected error:", sys.exc_info()[0])
-    NewSessionLogger = Logger.SessionLogger('TestLogger', "TestLog", logging.INFO)
-    print('if the same', NewSessionLogger is SessionLogger)
+    SessionLogger.Info('Application Started')
+
+
+#    NewSessionLogger = Logger.SessionLogger('TestLogger', "TestLog", logging.INFO)
+#    NewSessionLogger.Info("This msg is from another logger")
+#    print('if the same', NewSessionLogger is SessionLogger)
     sys.exit(app.exec_())
 
 
