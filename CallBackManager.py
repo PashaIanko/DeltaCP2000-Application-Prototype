@@ -1,6 +1,8 @@
 from GraphicsShell import *
 import ConnectionParameters
 import Connector
+import SessionLogger as Logger
+import logging
 
 class Test:
     def __init__(self):
@@ -114,12 +116,19 @@ class CallBackManager(GraphicsShell):
 if __name__ == "__main__":
     import sys
 
+    SessionLogger = Logger.SessionLogger('TestLogger', "TestLog", logging.INFO)
+
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
-
     ui = CallBackManager(MainWindow)
 
     MainWindow.show()
+    try:
+        SessionLogger.Info('Application Startedd')
+    except:
+        print ("Unexpected error:", sys.exc_info()[0])
+    NewSessionLogger = Logger.SessionLogger('TestLogger', "TestLog", logging.INFO)
+    print('if the same', NewSessionLogger is SessionLogger)
     sys.exit(app.exec_())
 
 

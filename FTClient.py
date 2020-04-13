@@ -47,6 +47,9 @@ class FTClient(ModbusClient):
     def SendRunCommand(self):
         pass
 
+    def SendStopCommand(self):
+        pass
+
 # Source Code from video on Youtube:
 #client = ModbusClient(
 #    method = 'rtu',

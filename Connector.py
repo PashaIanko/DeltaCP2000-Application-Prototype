@@ -96,10 +96,18 @@ class Connector:
             self.PopUpNotifier.ClientNotConnectedNotify()
 
     def RunFT(self):
+        print('Connector in Run Command')
         if(self.CheckClientConnection()):
             self.DeltaCPClient.SendRunCommand()
         else:
             self.CrashNotifier.CrashNotify("Sending Run Command: Client is not connected!")
+
+    def StopFT(self):
+        print('Connector in Run Command')
+        if(self.CheckClientConnection()):
+            self.DeltaCPClient.SendStopCommand()
+        else:
+            self.CrashNotifier.CrashNotify("Sending Stop Command: Client is not connected!")
 
 
 
