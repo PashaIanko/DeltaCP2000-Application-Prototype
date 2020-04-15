@@ -3,6 +3,7 @@ import ConnectionParameters
 import Connector
 import SessionLogger as Logger
 import logging
+import SignalGeneratorGUI
 
 class Test:
     def __init__(self):
@@ -62,6 +63,10 @@ class CallBackManager(GraphicsShell):
         self.ByteSizecomboBox.currentIndexChanged.connect   (self.SetByteSize)
         self.ParitycomboBox.currentIndexChanged.connect     (self.SetParity)
         self.StopBitscomboBox.currentIndexChanged.connect   (self.SetStopBits)
+        try:
+            self.SignalTypecomboBox.currentIndexChanged.connect(lambda: SignalGeneratorGUI.SignalGeneratorGUI.OpenGUI(self.SignalTypecomboBox.currentText()))
+        except:
+            print(sys.exc_info())
 
 
 

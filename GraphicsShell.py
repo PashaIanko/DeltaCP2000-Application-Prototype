@@ -111,8 +111,7 @@ class GraphicsShell(object):
         self.OutputFrequencySettingTab.setObjectName("OutputFrequencySettingTab")
         self.FrequencySetSlider = QtWidgets.QSlider(self.OutputFrequencySettingTab)
         self.FrequencySetSlider.setGeometry(QtCore.QRect(420, 50, 231, 22))
-        self.FrequencySetSlider.setMaximum(100)
-        self.FrequencySetSlider.setSingleStep(0.01)
+        self.FrequencySetSlider.setMaximum(50)
         self.FrequencySetSlider.setOrientation(QtCore.Qt.Horizontal)
         self.FrequencySetSlider.setTickPosition(QtWidgets.QSlider.TicksBelow)
         self.FrequencySetSlider.setObjectName("FrequencySetSlider")
@@ -168,6 +167,17 @@ class GraphicsShell(object):
         self.aaa.addTab(self.OutputFrequencySettingTab, "")
         self.FrequencySignalSetting = QtWidgets.QWidget()
         self.FrequencySignalSetting.setObjectName("FrequencySignalSetting")
+        self.SignalTypecomboBox = QtWidgets.QComboBox(self.FrequencySignalSetting)
+        self.SignalTypecomboBox.setGeometry(QtCore.QRect(150, 50, 73, 22))
+        self.SignalTypecomboBox.setObjectName("SignalTypecomboBox")
+        self.SignalTypecomboBox.addItem("")
+        self.SignalTypecomboBox.setItemText(0, "")
+        self.SignalTypecomboBox.addItem("")
+        self.SignalTypecomboBox.addItem("")
+        self.SignalTypecomboBox.addItem("")
+        self.label_4 = QtWidgets.QLabel(self.FrequencySignalSetting)
+        self.label_4.setGeometry(QtCore.QRect(40, 50, 96, 22))
+        self.label_4.setObjectName("label_4")
         self.aaa.addTab(self.FrequencySignalSetting, "")
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
@@ -222,29 +232,40 @@ class GraphicsShell(object):
         self.ParitycomboBox.setItemText(3, _translate("MainWindow", "E"))
         self.ProtocolcomboBox.setItemText(1, _translate("MainWindow", "RTU"))
         self.ProtocolcomboBox.setItemText(2, _translate("MainWindow", "ASCII"))
-        self.aaa.setTabText(self.aaa.indexOf(self.ConnectionParametersTab), _translate("MainWindow", "Connection Parameters"))
-        self.HztextEdit.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:7.8pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'MS Shell Dlg 2\';\">Hz</span></p></body></html>"))
+        self.aaa.setTabText(self.aaa.indexOf(self.ConnectionParametersTab),
+                            _translate("MainWindow", "Connection Parameters"))
+        self.HztextEdit.setHtml(_translate("MainWindow",
+                                           "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+                                           "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+                                           "p, li { white-space: pre-wrap; }\n"
+                                           "</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:7.8pt; font-weight:400; font-style:normal;\">\n"
+                                           "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'MS Shell Dlg 2\';\">Hz</span></p></body></html>"))
         self.TestpushButton.setText(_translate("MainWindow", "TestButton"))
-        self.FreqMintextEdit.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:7.8pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'MS Shell Dlg 2\';\">0</span></p></body></html>"))
-        self.FreqMaxtextEdit.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:7.8pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'MS Shell Dlg 2\';\">100</span></p></body></html>"))
+        self.FreqMintextEdit.setHtml(_translate("MainWindow",
+                                                "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+                                                "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+                                                "p, li { white-space: pre-wrap; }\n"
+                                                "</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:7.8pt; font-weight:400; font-style:normal;\">\n"
+                                                "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'MS Shell Dlg 2\';\">0</span></p></body></html>"))
+        self.FreqMaxtextEdit.setHtml(_translate("MainWindow",
+                                                "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+                                                "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+                                                "p, li { white-space: pre-wrap; }\n"
+                                                "</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:7.8pt; font-weight:400; font-style:normal;\">\n"
+                                                "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'MS Shell Dlg 2\';\">100</span></p></body></html>"))
         self.SetFreqpushButton.setText(_translate("MainWindow", "Set frequency"))
         self.RunpushButton.setText(_translate("MainWindow", "Run"))
         self.StoppushButton.setText(_translate("MainWindow", "Stop"))
         self.label_3.setText(_translate("MainWindow", "Output frequency:"))
-        self.aaa.setTabText(self.aaa.indexOf(self.OutputFrequencySettingTab), _translate("MainWindow", "Output Frequency Setting"))
-        self.aaa.setTabText(self.aaa.indexOf(self.FrequencySignalSetting), _translate("MainWindow", "Frequency Signal Setting"))
+        self.FrequencySetlineEdit.setText(_translate("MainWindow", "0"))
+        self.aaa.setTabText(self.aaa.indexOf(self.OutputFrequencySettingTab),
+                            _translate("MainWindow", "Output Frequency Setting"))
+        self.SignalTypecomboBox.setItemText(1, _translate("MainWindow", "sin"))
+        self.SignalTypecomboBox.setItemText(2, _translate("MainWindow", "meander"))
+        self.SignalTypecomboBox.setItemText(3, _translate("MainWindow", "saw"))
+        self.label_4.setText(_translate("MainWindow", "Signal type:"))
+        self.aaa.setTabText(self.aaa.indexOf(self.FrequencySignalSetting),
+                            _translate("MainWindow", "Frequency Signal Setting"))
         self.menuConnection_Parameters.setTitle(_translate("MainWindow", "Connection Parameters"))
         self.menuOutput_Frequency_Settings.setTitle(_translate("MainWindow", "Output Frequency Settings"))
         self.menuNew.setTitle(_translate("MainWindow", "New"))
